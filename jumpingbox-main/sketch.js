@@ -15,13 +15,13 @@ function setup(){
     bloco1 = createSprite(0,580,360,30);
     bloco1.shapeColor = "blue";
 
-    bloco2 = createSprite(295,580,200,30);
+    bloco2 = createSprite(250,580,180,30);
     bloco2.shapeColor = "orange";
 
-    bloco3 = createSprite(350,580,100,30);
+    bloco3 = createSprite(420,580,180,30);
     bloco3.shapeColor = "red";
 
-    bloco4 = createSprite(400,580,50,30);
+    bloco4 = createSprite(680,580,360,30);
     bloco4.shapeColor = "green";
 
     //crie aqui mais dois blocos, ou seja, bloco3 e bloco4
@@ -29,15 +29,20 @@ function setup(){
     bola = createSprite(random(20,750),100, 40,40);
     bola.shapeColor = rgb(255,255,255);
     //escreva o código para adicionar velocityX e velocityY
-    bola.velocityX = -1;
-    bola.velocityY = 1;
+    bola.velocityX = -4;
+    bola.velocityY = 4;
 
 }
 
 function draw() {
     background(rgb(169,169,169));
-    arestas=createArestasprites();
+    arestas=createEdgeSprites();
     bola.bounceOff(arestas);
+    bola.bounceOff(bloco1);
+    bola.bounceOff(bloco2);
+    bola.bounceOff(bloco3);
+    bola.bounceOff(bloco4);
+
 
     
     //escreva o código de ricochete de bola para bloco1 
@@ -58,14 +63,14 @@ function draw() {
     }
 
     //escreva o código de ricochete de bola para bloco3
-    if(bloco3.isTouching(bola) && bola.bounceOff(bloco3)){
-        bola.shapeColor = "blue";
+    if(bloco3.isTouching(bola)){
+        bola.shapeColor = "red";
         music.play();
     }
 
     //escreva o código de ricochete de bola para bloco4
-    if(bloco4.isTouching(bola) && bola.bounceOff(bloco4)){
-        bola.shapeColor = "blue";
+    if(bloco4.isTouching(bola)){
+        bola.shapeColor = "green";
         music.play();
     }
 
